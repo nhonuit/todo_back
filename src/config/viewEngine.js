@@ -1,7 +1,9 @@
 import express from "express"
+import { engine } from 'express-handlebars';
 let configViewEngine = (app) => {
     app.use(express.static("./src/public"));
-    app.set("view engine", "ejs");
+    app.engine('.hbs', engine({extname: '.hbs'}));
+    app.set('view engine', '.hbs');
     app.set("views", "./src/views")
 }
 module.exports = configViewEngine;

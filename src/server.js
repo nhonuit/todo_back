@@ -1,9 +1,14 @@
 import express from "express";
+import { engine } from 'express-handlebars';
 import bodyParser from "body-parser";
 import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./route/web";
-require('dotenv').config();
+const db = require('./config/db/index')
 
+//env
+require('dotenv').config();
+//connect db
+db.connect();
 
 
 let app = express();
@@ -21,4 +26,4 @@ app.listen(port,()=>{
     console.log('Server running on port: '+port);
 })
 
-
+//mongoose

@@ -1,0 +1,13 @@
+body{
+    background-image: url('../image/background-login.jpg');
+    text-align: center;
+}
+th{
+    font-size: 30px;
+}
+table{
+    text-align: center;
+}
+td{
+    width: 500px;
+}
