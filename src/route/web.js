@@ -16,8 +16,33 @@ let initWebRoutes  = (app) => {
     
     router.get('/api/get-all-users', userController.getAllUser)
     
-
-
+    router.get('/site', (req,res)=>{
+        res.render('site')
+    })
+  
+    router.get('/createnewitem', (req,res)=>{
+        res.render('createnewitem')
+    })  
+    router.get('/createnewlist', (req,res)=>{
+        res.render('createnewlist')
+    })  
+    router.get('/mylist', (req,res)=>{
+        res.render('mylist')
+    })  
+    router.get('/sharelist', (req,res)=>{
+        res.render('sharelist')
+    })
+      
+    router.get('/signup', (req,res)=>{
+        res.render('signup')
+    })
+       
+    router.get('/login', (req,res)=>{
+        res.render('login')
+    })
+    router.get('/todo', (req,res)=>{
+        res.render('todo')
+    })
     return app.use("/", router);
 } 
 
