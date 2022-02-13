@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose')
+import mongoose from 'mongoose';
 const SharelistSchema = new mongoose.Schema({
     id: {type:Number, require: true},
     uid: {type:Number, require: true},

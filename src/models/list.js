@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose')
+import mongoose from 'mongoose';
 const ListSchema = new mongoose.Schema({
     id: {type:Number, require: true},
     uid: {type:Number, require: true},

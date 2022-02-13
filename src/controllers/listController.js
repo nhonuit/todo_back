@@ -1,15 +1,10 @@
-const List = require('../models/list')
-
-let getAllList = async (req, res) => {
-   
-       List.find({}, function (err, lists){
-           if (!err) {res.json(lists)}
-           else{
-            res.status(400).json({message:'Loi tu server'})
-        }
-       })
-   
-} 
-module.exports = {
-    getAllList:getAllList,
+import express from 'express'
+import List from '../models/list'
+class listController {
+    //render my list
+    mylist(req,res)
+    {
+        res.render('mylist');
+    }
 }
+module.exports = new listController;

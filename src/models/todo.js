@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose')
+import mongoose from 'mongoose';
 const todoSchema = new mongoose.Schema({
     wid:{type:Number, require: true},
     uid:{type:Number, require: true},
