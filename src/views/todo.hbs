@@ -15,22 +15,35 @@
     <title>Todo</title>
 </head>
 <body>
+  {{>header}}
     <div class="container">
 
 
 <div class="list">
 <table >
-  <th>Time</th>
-  <th>Do</th>
-  <th>Action</th>
+  <th class="col-md-2">Tittle</th>
+  <th class="col-md-2">Description</th>
+  <th class="col-md-2">Due date</th>
+  <th class="col-md-2">List's name</th>
+  <th class="col-md-2">Owner's name</th>
   <tr>
-    <td>T1</td>
-    <td>T1</td>
-    <td><button class="btn btn-danger">Xóa</button><button class="btn btn-primary">Sửa</button><button class="btn btn-success">Đã làm xong</button><button  class="btn btn-warning">Không làm</button></td>
+    <td class="col-md-2 todo">T1</td>
+    <td class="col-md-2 todo">T1</td>
+    <td class="col-md-2 todo">T1</td>
+    <td class="col-md-2 todo">T1</td>
+    <td class="col-md-2 todo">T1</td>
+   
+    <div class="option"><button class="btn btn-danger">Xóa</button><button class="btn btn-primary">Sửa</button><button class="btn btn-success">Hoàn thành</button></div>
     <script>
     
-    //Ẩn button khi đưa chuột vào
+
+
     
+    //Ẩn button khi đưa chuột vào
+    $(".option").hide();
+    $(".todo").hover(function()){
+      $(".option").show();
+    }
     
     /*$(".btn btn-warning").mouseover(function(){
       $(".btn btn-warning").hide();
@@ -38,7 +51,6 @@
     $(".btn btn-warning").mouseout(function(){
       $(".btn btn-warning").show();
     });*/
-
 
     
     </script>
@@ -49,5 +61,7 @@
 
 
         </div>
-</body>
+
+    
+    </body>
 </html>

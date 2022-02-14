@@ -4,6 +4,7 @@ const ListSchema = new mongoose.Schema({
     uid: {type:Number, require: true},
     title:{type:String, require: true},
     description: {type:String, require: true},
+    duedate: {type:Date, require: true},
     createdAt : {type:Date, default: Date.now},
     updatedAt: {type:Date, default: Date.now},
 })

@@ -3,7 +3,11 @@ class userController{
     //get users
     index(req,res)
     {
-        res.render('mylist');
+        res.render('site');
+    }
+    todo(req,res)
+    {
+        res.render('todo')
     }
     //get /users/:slug
     show(req,res){

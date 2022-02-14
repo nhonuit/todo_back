@@ -4,10 +4,11 @@ const router = express.Router();
 
 
 
-router.use('/:slug', userController.show);
 
-router.use('/', userController.index);
+router.use('/dashboard', userController.index);
 
+
+router.get('/todo', userController.todo);
 
 
 

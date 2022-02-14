@@ -7,6 +7,7 @@ import sharelistController from "../controllers/sharelistController"
 import auth from "../route/auth"
 import user from "../route/user"
 import list from "../route/list"
+import todo from "../route/todo"
 
 
 let router = express.Router();
@@ -15,6 +16,7 @@ let initWebRoutes  = (app) => {
     router.use('/auth',auth);
     router.use('/user',user);   
     router.use('/list',list);
+    router.use('/todo',todo);
     router.get('/', (req,res)=>{
         res.render('home')
     })
