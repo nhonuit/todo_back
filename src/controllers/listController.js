@@ -17,7 +17,6 @@ class listController {
         
         //
 
-
         const newList =  new List({
             tittle,
             description,
@@ -41,7 +40,7 @@ class listController {
     {
         const {_id, name,participant} = req.body;
          //if(uid===uid){ //1 list phải được update, delete bởi chính người tạo ra nó    
-        List.findByIdAndUpdate({_id: "6209d578a5e6e2e083f9b4db"})
+        List.findByIdAndUpdate({_id: _id})
         .then(list =>{
             if (list){
                 list.name = name;
@@ -77,7 +76,7 @@ class listController {
       loadSharelist(req,res){
           const {listid} =req.body;
           List.count({
-              'list_id':'listid'
+              'listid':'listid'
             }, function (err, docs) {
               
           
@@ -87,22 +86,11 @@ class listController {
 
       ShareListToUser(req,res){
           const {uid, listid} =req.body;
-          List.find({listid : listid, shareduid: uid})
-          .then(list => {
-              if(list){
-                  res.send('Nguoi dung nay da duoc share')
-              }
-              else {
-                  list.shareduid = uid;
-                  list.save()
-                  .then(
-                      redirect(res.render('sharelist'))
-                  )
-                  .catch(err => console.log(err));
-              }
-          })
-
+          List.findOneAndUpdate({listid : listid, shareduid: uid},   { $push: { uid: shareduid  } },)
       }
+
+
+      //number of item in sharelist (not done)
       NumberOfItemInSharelist(req,res){
           List.count({
               'booking.status': 'Underprocess',
@@ -111,5 +99,10 @@ class listController {
               // ... count of top-level items which have booking with following attributes
             });
       }
+
+
+
+
+      
 }
 module.exports = new listController;

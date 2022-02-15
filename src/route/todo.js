@@ -19,6 +19,9 @@ router.get('/deleteitem',todoController.DeleteItemById);
 router.get('/outdated',todoController.OutdatedItem);
 //finnish item
 router.get('/finnishitem',todoController.FinnishItem);
+//show all item in list
+router.get('/showalliteminlist',todoController.ShowAllItemInList);
+//show outdated item in list
 
 module.exports = router;
 

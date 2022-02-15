@@ -23,7 +23,7 @@ class todoController {
      //create item handler
      CreateNewItem(req,res)
      {
-         const {tittle, description, duedate, list_id} = req.body;
+         const {tittle, description, duedate, listid} = req.body;
          
          //
  
@@ -33,7 +33,7 @@ class todoController {
              description,
              duedate,          
              status: 'N',      
-             list_id,       
+             listid,       
             });
             newTodo.save()
             .then(todo =>{
@@ -86,7 +86,7 @@ class todoController {
     {
         const {_id, tittle, description, duedate} = req.body;
          
-        Todo.findById("620b102233892803660ed933")
+        Todo.findById(_id)
         .then(todo =>{
             if (todo){
                 todo.status = 'D';
@@ -100,7 +100,7 @@ class todoController {
     OutdatedItem(req,res)
     {   
         const {_id, tittle,description,duedate} = req.body;         
-        Todo.findById("620b102233892803660ed933")
+        Todo.findById(_id)
         .then(todo =>{         
             let getdate = new Date();
             if (todo.duedate < getdate){
@@ -110,6 +110,37 @@ class todoController {
             } 
             
         });  
+    }
+    
+
+
+    //FILTER OF ITEM IN LIST
+
+    //show all item in list
+      ShowAllItemInList(req,res)
+    {
+        const {listid} = req.body;
+        Todo.find({listid:listid}
+        .then(todo =>{
+            res.send(todo);
+        })
+        .catch(err => console.log(err)
+        ));
+          
+            
+           
+    }
+
+    //show all outdated item in list
+    ShowAllOutdatedItemInList(req,res)
+    {
+        const {listid} = req.body;
+        Todo.find({listid:listid, status:"O"}
+        .then(todo =>{
+            res.send(todo);
+        })
+        .catch(err => console.log(err)
+        ))
     }
     
 }
