@@ -14,7 +14,11 @@ router.post('/createitem',todoController.CreateNewItem);
 router.get('/updateitem',todoController.UpdateItemPage);
 router.post('/updateitem',todoController.UpdateItemById);
 //delete item
-router.post('/deleteitem',todoController.DeleteItemById);
+router.get('/deleteitem',todoController.DeleteItemById);
+//comparedate -> outdated
+router.get('/outdated',todoController.OutdatedItem);
+//finnish item
+router.get('/finnishitem',todoController.FinnishItem);
 
 module.exports = router;
 

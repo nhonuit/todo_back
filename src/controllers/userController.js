@@ -1,4 +1,4 @@
-
+import User from "../models/user"
 class userController{
     //get users
     index(req,res)
@@ -14,6 +14,31 @@ class userController{
 res.send('User detail');
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //api user
+
+    //get all user
+    GetAllUser(req,res)
+    { 
+        User.find({}, function(err, users) {
+            res.send({users});
+         });
+    }
 }
 
 module.exports = new userController;

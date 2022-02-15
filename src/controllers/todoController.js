@@ -1,5 +1,8 @@
+const ObjectId = require('mongoose').Types.ObjectId;
 const req = require('express/lib/request');
 const Todo = require('../models/todo')
+
+
 
 class todoController {
 
@@ -20,7 +23,7 @@ class todoController {
      //create item handler
      CreateNewItem(req,res)
      {
-         const {tittle, description, duedate} = req.body;
+         const {tittle, description, duedate, list_id} = req.body;
          
          //
  
@@ -29,7 +32,8 @@ class todoController {
              tittle,
              description,
              duedate,          
-             status: 'N',             
+             status: 'N',      
+             list_id,       
             });
             newTodo.save()
             .then(todo =>{
@@ -43,13 +47,15 @@ class todoController {
      //delete item handler
     DeleteItemById(req,res)
      {
-        const {id} = req.body;
+        const {_id} = req.body;
        
-        Todo.deleteOne({_id: '620a1a0c1155bd26967d391a'})  
-         .then(todo =>{
-            res.redirect('/list/mylist');
-        })
-        .catch(err => console.log(err));
+       if(uid===uid){
+        Todo.remove({_id: _id})  
+        .then(todo =>{
+           res.redirect('/todo/todo');
+       })
+       .catch(err => console.log(err));
+       }
     }
     //render update item page
     UpdateItemPage(req,res)
@@ -59,20 +65,52 @@ class todoController {
     //update item handler
     UpdateItemById(req,res)
     {
-        const {id, tittle,description,duedate} = req.body;
+        const {_id, tittle,description,duedate} = req.body;
          
-            Todo.findOne({_id: id})
+            Todo.findByIdAndUpdate({_id: _id})
             .then(todo =>{
                 if (todo){
-                    tittle= tittle;
-                    description= description;
-                    duedate = duedate;
+                    todo.tittle = tittle;
+                    todo.description = description;
+                    todo.duedate = duedate;
+                    todo.save()
+                    
                 }
                 else { res.send('Item khong ton tai')}
                 
             });
     
        }
+       //finnish item handler
+    FinnishItem(req,res)
+    {
+        const {_id, tittle, description, duedate} = req.body;
+         
+        Todo.findById("620b102233892803660ed933")
+        .then(todo =>{
+            if (todo){
+                todo.status = 'D';
+                todo.save();
+            }
+            else { res.send('Item khong ton tai')}
+            
+        });  
+    }
+    //update status of outdated item
+    OutdatedItem(req,res)
+    {   
+        const {_id, tittle,description,duedate} = req.body;         
+        Todo.findById("620b102233892803660ed933")
+        .then(todo =>{         
+            let getdate = new Date();
+            if (todo.duedate < getdate){
+                
+                todo.status = 'O';
+                todo.save();
+            } 
+            
+        });  
+    }
     
 }
 
