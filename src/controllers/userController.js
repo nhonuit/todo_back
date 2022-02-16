@@ -2,8 +2,9 @@ import User from "../models/user"
 class userController{
     //get users
     index(req,res)
-    {
-        res.render('site');
+    {   var scripts = [{ script: '/js/myTestScript.js' }];
+        res.render('site',{scripts:scripts});
+
     }
     todo(req,res)
     {

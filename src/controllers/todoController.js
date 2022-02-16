@@ -37,7 +37,7 @@ class todoController {
             });
             newTodo.save()
             .then(todo =>{
-                res.redirect('/todo/todo');
+                res.redirect('/list/editlist');
             })
             .catch(err => console.log(err));
  
@@ -136,6 +136,17 @@ class todoController {
     {
         const {listid} = req.body;
         Todo.find({listid:listid, status:"O"}
+        .then(todo =>{
+            res.send(todo);
+        })
+        .catch(err => console.log(err)
+        ))
+    }
+    //show all finnished item in list
+    ShowAllFinishedItemInList(req,res)
+    {
+        const {listid} = req.body;
+        Todo.find({listid:listid, status:"D"}
         .then(todo =>{
             res.send(todo);
         })

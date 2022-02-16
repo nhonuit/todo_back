@@ -1,10 +1,21 @@
 import express from 'express'
 import List from '../models/list'
+import Todo from '../models/todo'
 class listController {
-    //render my list
+    //render my list page
     mylist(req,res)
     {
         res.render('mylist');
+    }
+    //my list handler
+    GetAllMyList(req,res)
+    {
+        const {} = req.body;
+        List.find({uid:uid, shareduid:uid})
+        .then(list =>{
+            res.send(list);
+        })
+        .catch(err => console.log(err))
     }
     CreateListPage(req,res)
     {
@@ -57,9 +68,9 @@ class listController {
         const {_id} = req.body;
        
         //if(uid===uid){ //1 list phải được update, delete bởi chính người tạo ra nó
-         Todo.remove({_id: _id})  
+         List.deleteOne({_id: _id})  
          .then(todo =>{
-            res.redirect('/todo/todo');
+            res.redirect('/list/mylist');
         })
         .catch(err => console.log(err));
         }
@@ -86,15 +97,30 @@ class listController {
 
       ShareListToUser(req,res){
           const {uid, listid} =req.body;
-          List.findOneAndUpdate({listid : listid, shareduid: uid},   { $push: { uid: shareduid  } },)
+          List.find({listid : listid, shareduid: uid})
+          .then(list => {
+              if(list){
+                  res.send('Nguoi dung nay da duoc share')
+              }
+              else {
+                List.findOneAndUpdate({listid : listid, shareduid: uid},   { $push: {uid: shareduid}},)
+                  //list.save()
+                  .then(
+                      redirect(res.render('sharelist'))
+                  )
+                  .catch(err => console.log(err));
+              }
+          })
+
       }
 
 
       //number of item in sharelist (not done)
       NumberOfItemInSharelist(req,res){
-          List.count({
-              'booking.status': 'Underprocess',
-              'booking.delivery_date' : '15-03-2016'
+          const {_id} = req.body;
+          Todo.count({
+              'todo.listid': _id,
+              //'booking.delivery_date' : '15-03-2016'
             }, function (err, docs) {
               // ... count of top-level items which have booking with following attributes
             });

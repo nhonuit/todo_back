@@ -16,9 +16,7 @@ let initWebRoutes  = (app) => {
     router.use('/user',user);   
     router.use('/list',list);
     router.use('/todo',todo);
-    router.get('/', (req,res)=>{
-        res.render('home')
-    })
+    
     
     
     

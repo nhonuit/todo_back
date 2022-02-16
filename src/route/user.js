@@ -1,11 +1,12 @@
 import express  from "express";
 import userController from "../controllers/userController";
+import listController from "../controllers/listController"
 const router = express.Router();
 
 
 
 
-router.use('/dashboard', userController.index);
+router.use('/home', userController.index);
 
 
 router.get('/todo', userController.todo);
@@ -13,8 +14,8 @@ router.get('/todo', userController.todo);
 
 router.get('/userlist',userController.GetAllUser);
    
+router.get('/mylist',listController.mylist);
 
-
-
+router.get('/sharelist',listController.renderSharelist);
 
 module.exports = router;
