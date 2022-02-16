@@ -21,7 +21,7 @@ router.get('/email-activate/:token',authController.ActivateAccount);
 //forgot password
 router.get('/forgotpass',authController.renderForgotPass);
 router.post('/forgotpass',authController.ForgotPassword);
-router.get('/newpassword',authController.RenderPushNewPassword);
-router.get('/tokennewpassword:token',authController.PushNewPassword);
+router.get('/newpassword/:token',authController.RenderPushNewPassword);
+router.post('/newpassword/:token',authController.PushNewPassword);
 
 module.exports = router;

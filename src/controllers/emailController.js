@@ -59,7 +59,7 @@ let sendEmailForgotPassword = async (email,token) => {
         html: `
         <h3>Xin chào!</h3>
         <p>Click vào link sau để thay đổi password</p>
-        <p>${process.env.CLIENT_URL}/auth/tokennewpassword/${token}</p>
+        <p>${process.env.CLIENT_URL}/auth/newpassword/${token}</p>
         `, // html body
     });
 }

@@ -115,12 +115,6 @@ else{
 }})}
 
 
-   TokenForgotPassword(req,res)
-   {
-  
-             //validation passed
-   
-   }
 
 
    RenderPushNewPassword(req,res){

@@ -6,6 +6,7 @@ class userController{
         res.render('site',{scripts:scripts});
 
     }
+
     todo(req,res)
     {
         res.render('todo')
@@ -14,14 +15,6 @@ class userController{
     show(req,res){
 res.send('User detail');
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -40,6 +33,12 @@ res.send('User detail');
             res.send({users});
          });
     }
+
+    renderProfile(req,res)
+    {
+        res.render('profile');
+    }
+
 }
 
 module.exports = new userController;
