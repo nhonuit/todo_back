@@ -1,12 +1,23 @@
 import express from 'express'
 import List from '../models/list'
 import Todo from '../models/todo'
+import User from '../models/user'
+import {multipleMongooseToObject} from "../util/mongoose"
 class listController {
     //render my list page
-    mylist(req,res)
-    {
-        res.render('mylist');
-    }
+    mylist(req,res,next)
+    {   List.find({})
+    .then(lists=>{
+     //   User.find({_id:lists.shareduid})
+       // .then(users =>
+        res.render('mylist',{lists:multipleMongooseToObject(lists),
+                            //users:multipleMongooseToObject(users),
+                                })
+                            //)
+    
+    })
+    .catch(next);
+        }
     //my list handler
     GetAllMyList(req,res)
     {
@@ -24,18 +35,18 @@ class listController {
     
     CreateList(req,res)
     {
-        const {tittle, description, duedate} = req.body;
+        const {tittle, shareduid, uid} = req.body;
         
         //
 
         const newList =  new List({
             tittle,
-            description,
-            duedate,                       
+            shareduid,
+            uid,                       
            });
            newList.save()
            .then(list =>{
-               res.redirect('/list/mylist');
+               return res.redirect('/user/mylist');
            })
            .catch(err => console.log(err));
 
@@ -47,6 +58,7 @@ class listController {
     {
         res.render('editlist')
     }
+
     EditList(req,res)
     {
         const {_id, name,participant} = req.body;
@@ -64,15 +76,15 @@ class listController {
         });
     }
 //}
-    DeleteListById(req,res){
-        const {_id} = req.body;
+    DeleteListById(req,res,next){
+        const {_id} = req.params;
        
         //if(uid===uid){ //1 list phải được update, delete bởi chính người tạo ra nó
          List.deleteOne({_id: _id})  
-         .then(todo =>{
-            res.redirect('/list/mylist');
+         .then(lists =>{
+            res.redirect('/user/mylist');
         })
-        .catch(err => console.log(err));
+        .catch(next);
         }
     //}
 

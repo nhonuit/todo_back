@@ -18,6 +18,6 @@ router.get('/mylist',listController.mylist);
 
 router.get('/sharelist',listController.renderSharelist);
 
-router.get('/profile', userController.renderProfile);
+router.get('/profile?:_id', userController.renderProfile);
 
 module.exports = router;

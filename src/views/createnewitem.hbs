@@ -11,6 +11,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
      <link rel="stylesheet" href="/scss/style.css">
+<!-- CDN example (unpkg) -->
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 
  
@@ -36,7 +38,7 @@
         <input type="text" class="col-md-4" name="tittle" placeholder="Item" required>
         <input type="text" class="col-md-4" name="description" placeholder="Description">
         <input type="date" class="col-md-4" name="duedate" placeholder="Date due" required>
-        
+        <script>dayjs(date).format('DD/MM/YYYY')</script>
 </div>
 <button type="submit" class="btn btn-primary">Create item</button>
 </form>

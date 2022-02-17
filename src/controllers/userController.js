@@ -1,4 +1,6 @@
 import User from "../models/user"
+import List from "../models/list"
+import {multipleMongooseToObject} from "../util/mongoose"
 class userController{
     //get users
     index(req,res)
@@ -34,9 +36,20 @@ res.send('User detail');
          });
     }
 
-    renderProfile(req,res)
+    renderProfile(req,res,next)
     {
-        res.render('profile');
+        const {_id}=req.query;
+        User.find({_id:_id})
+        .then(users=>{
+         //   User.find({_id:lists.shareduid})
+           // .then(users =>
+            res.render('profile',{users:multipleMongooseToObject(users),
+                                //users:multipleMongooseToObject(users),
+                                    })
+                                //)
+        
+        })
+        .catch(next);
     }
 
 }

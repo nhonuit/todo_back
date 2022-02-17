@@ -2,15 +2,15 @@ import mongoose from 'mongoose';
 const   Schema = mongoose.Schema,
         ObjectId = Schema.ObjectId;
 const ListSchema = new mongoose.Schema({
-    id: {type:Number, require: true},
+    //_id: {type:Number, require: true},
     uid: [
         {type: mongoose.Schema.Types.ObjectId,ref:'User'},
     ],
-    title: {type:String, require: true},
+    tittle: {type:String, require: true},
     shareduid: [
-        {type: mongoose.Schema.Types.ObjectId,ref:'User'},
+        {type: mongoose.Schema.Types.ObjectId,ref:'User', require: false},
     ],
-    description: {type:String},
+    //description: {type:String},
     createdAt: {type:Date, default: Date.now},
     updatedAt: {type:Date, default: Date.now},
 })

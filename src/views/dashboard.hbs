@@ -26,35 +26,28 @@
   <th class="col-md-2">Due date</th>
   <th class="col-md-2">List's name</th>
   <th class="col-md-2">Owner's name</th>
+  <th class="col-md-2">Action</th>
+  {{#each todos}}
+   <div class ="listpart"></div>
   <tr>
-    <td class="col-md-2 todo">T1</td>
-    <td class="col-md-2 todo">T1</td>
-    <td class="col-md-2 todo">T1</td>
-    <td class="col-md-2 todo">T1</td>
-    <td class="col-md-2 todo">T1</td>
    
-    <div class="option"><button class="btn btn-danger">Xóa</button><button class="btn btn-primary">Sửa</button><button class="btn btn-success">Hoàn thành</button></div>
-    <script>
-    
+        <td class="col-md-2 todo"><h1>{{this.tittle}}</h1></td>
+        <td class="col-md-2 todo">{{this.description}}</td>
+        <td class="col-md-2 todo">{{this.duedate}}</td>
+        <td class="col-md-2 todo">T1</td>
+        <td class="col-md-2 todo">T1</td>
+      
+        <td class="col-md-2 todo"><button class="btn btn-danger" type="button">Xóa</button><button class="btn btn-primary">Sửa</button><button class="btn btn-success">Hoàn thành</button></td>
+     
+    </tr>
+     </div>
+    {{/each}}
+  
 
 
     
-    //Ẩn button khi đưa chuột vào
-    $(".option").hide();
-    $(".todo").hover(function()){
-      $(".option").show();
-    }
-    
-    /*$(".btn btn-warning").mouseover(function(){
-      $(".btn btn-warning").hide();
-    });
-    $(".btn btn-warning").mouseout(function(){
-      $(".btn btn-warning").show();
-    });*/
 
-    
-    </script>
-  </tr>
+  
   
 </table>
 </div>

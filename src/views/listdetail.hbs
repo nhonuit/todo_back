@@ -7,10 +7,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
  <link rel="stylesheet" href="/scss/style.css">
+<!-- CDN example (unpkg) -->
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 
  
@@ -18,41 +20,47 @@
 </head>
 <body>
   {{>header}}
-      <div class="container">
+<div class="container">
+<select class="form-select" aria-label="Default select example">
+  
+  <option value="1" class="all">All</option>
+  <option value="2" class="finnish">Finnish</option>
+  <option value="3" class="unfinnish">Unfinnish</option>
+</select>
+
+  <div class="list">
+<table >
+  <th class="col-md-2">Tittle</th>
+  <th class="col-md-2">Description</th>
+  <th class="col-md-2">Due date</th>
+  <th class="col-md-2">List's name</th>
+  <th class="col-md-2">Owner's name</th>
+  <th class="col-md-2">Action</th>
+  {{#each todos}}
+    <div class ="listpart">
+      <tr>
+   
+        <td class="col-md-2 todo"><h3>{{this.tittle}}</h3></td>
+        <td class="col-md-2 todo">{{this.description}}</td>
+        <td class="col-md-2 todo">{{this.duedate}}</td> 
+
+        <td class="col-md-2 todo">T1</td>
+        <td class="col-md-2 todo">T1</td>
+      
+        <td class="col-md-2 todo"><button class="btn btn-danger" type="button"><a data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#exampleModal">Xóa</a></button><button class="btn btn-primary">Sửa</button><button class="btn btn-success">Hoàn thành</button></td>
+     
+      </tr>
+    </div>
+    {{/each}}
+  
 
 
-<div class="mt-4">
-  <h3>My Lists</h3>
-  <div class="row">
-    {{#each lists}}
-          <div class="col-sm-6 col-lg-4">
-                    <div class="card" >
-              <h5 class="col-md-4">{{this.tittle}}</h5>
-              <div class="card-text">{{this.shareduid}}</div>
-              <div class="col-md-4">Number of items</div>
-              <a href="/todo/todo?{{this._id}}" class="btn btn-primary">List's detail</a>
-              	<li class="dropdowns">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Actions
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li class=""><a href="">Edit</a></li>
-							<li class=""><a href="" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#exampleModal">Delete</a></li>
-							
-						</ul>
-					</li>
-          </div>
-          </div>
-          {{/each}}
+    
+
+  
+  
+</table>
   </div>
- 
-      
-      </div>
-      
-      <!-- Button trigger modal -->
-
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -65,19 +73,17 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button id="btn-delete-list"type="button" class="btn btn-danger">Delete</button>
+        <button id="btn-delete-list"type="button" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#exampleModal"class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>
 </div>
-  </div>
 
-
-  {{>footer}}
-
-      
-</body>
-<form name="delete-list-form" method="POST"></form>
+    </div>
+{{>footer}}
+    
+    </body>
+    <form name="delete-list-form" method="POST"></form>
  <script>
 document.addEventListener('DOMContentLoaded', function () {
   var listId; 
@@ -89,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 btnDeleteList.onclick = function () {
   
-  deleteForm.action='/list/delete/'+listId+'?_method=DELETE';
+  deleteForm.action='/todo/deleteitem/'+listId+'?_method=DELETE';
   deleteForm.submit();
 }
 });</script>

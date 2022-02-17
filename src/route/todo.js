@@ -14,7 +14,9 @@ router.post('/createitem',todoController.CreateNewItem);
 router.get('/updateitem',todoController.UpdateItemPage);
 router.post('/updateitem',todoController.UpdateItemById);
 //delete item
-router.get('/deleteitem',todoController.DeleteItemById);
+router.get('/deleteitem/:_id',todoController.todo);
+router.post('/deleteitem/:_id',todoController.DeleteItemById);
+
 //comparedate -> outdated
 router.get('/outdated',todoController.OutdatedItem);
 //finnish item
