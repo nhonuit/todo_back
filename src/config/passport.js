@@ -1,5 +1,6 @@
 import LocalStrategy from 'passport-local';
 import mongoose from 'mongoose';
+import passport from 'passport';
 import bcrypt from 'bcryptjs/dist/bcrypt';
 import User from '../models/user';
 
@@ -8,7 +9,10 @@ import User from '../models/user';
 
 module.exports = function(passport) {
     passport.use(
-        new LocalStrategy({usernameField: 'email'}, (email, password, done)=>{
+        new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password',
+            }, (email, password, done)=>{
             //match user
             User.findOne({email: email})
             .then(user =>{
@@ -32,7 +36,7 @@ module.exports = function(passport) {
 
     passport.serializeUser(function(user, cb) {
         process.nextTick(function() {
-          cb(null, { id: user.id, username: user.username });
+          cb(null, { _id: user.id, username: user.username });
         });
       });
       

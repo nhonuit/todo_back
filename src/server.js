@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-//config viewengine
+//config viewengines
 viewEngine(app);
 
 
@@ -49,7 +49,7 @@ app.use(passport.authenticate('session'));
 
 
 //connect flash
-app.use(flash());
+//app.use(flash());
 
 
 

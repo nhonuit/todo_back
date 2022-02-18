@@ -10,17 +10,17 @@ import todo from "../route/todo"
 
 
 let router = express.Router();
-let initWebRoutes  = (app) => {
+let initWebRoutes = (app) => {
 
-    router.use('/auth',auth);
-    router.use('/user',user);   
-    router.use('/list',list);
-    router.use('/todo',todo);
-    
-    
-    
-    
+    router.use('/auth', auth);
+    router.use('/user', user);
+    router.use('/list', list);
+    router.use('/todo', todo);
+
+
+
+
     return app.use("/", router);
-} 
+}
 
-module.exports=initWebRoutes;
+module.exports = initWebRoutes;

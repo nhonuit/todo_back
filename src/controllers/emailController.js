@@ -9,7 +9,7 @@ async function main() {
 
 }
 
-let sendSimpleEmail = async (email,token) => {
+let sendSimpleEmail = async (email, token) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -36,7 +36,7 @@ let sendSimpleEmail = async (email,token) => {
         `, // html body
     });
 }
-let sendEmailForgotPassword = async (email,token) => {
+let sendEmailForgotPassword = async (email, token) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,

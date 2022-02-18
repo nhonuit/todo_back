@@ -1,28 +1,28 @@
 <h1 style="text-align: center;">WHAT TO DO TODAY?</h1>
-  <div class="time" style="margin-left: 80%;">
-Date:
-<input type="text" id="currentDate">
-<br><br>
-<script>
-    function refreshDate(){
-  var today = new Date();
- 
-  var date = today.getDate() +'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-  document.getElementById("currentDate").value = date;
-}
-setInterval(refreshDate,1000);
-</script>
-<!-- Current Time -->
-Time:
-<input type="text" id="currentTime">
-<br><br>
+<div class="time" style="margin-left: 80%;">
+  Date:
+  <input type="text" id="currentDate">
+  <br><br>
+  <script>
+    function refreshDate() {
+      var today = new Date();
+
+      var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+      document.getElementById("currentDate").value = date;
+    }
+    setInterval(refreshDate, 1000);
+  </script>
+  <!-- Current Time -->
+  Time:
+  <input type="text" id="currentTime">
+  <br><br>
 </div>
 <script>
-function refreshTime(){ 
-var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  document.getElementById("currentTime").value = time;
-}
-setInterval(refreshTime, 1000);
-  
+  function refreshTime() {
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    document.getElementById("currentTime").value = time;
+  }
+  setInterval(refreshTime, 1000);
+
 </script>

@@ -15,19 +15,19 @@ class todoController {
         const { _id } = req.query;
         {
             Todo.find({})
-            .then(todos => {
-                //   User.find({_id:lists.shareduid})
-                // .then(users =>
-                todos.duedate = dayjs(todos.duedate).format('DD/MM/YYYY');
+                .then(todos => {
+                    //   User.find({_id:lists.shareduid})
+                    // .then(users =>
+                    todos.duedate = dayjs(todos.duedate).format('DD/MM/YYYY');
 
-                res.render('listdetail', {
-                    todos: multipleMongooseToObject(todos),
-                    //users:multipleMongooseToObject(users),
+                    res.render('listdetail', {
+                        todos: multipleMongooseToObject(todos),
+                        //users:multipleMongooseToObject(users),
+                    })
+                    //)
+
                 })
-                //)
-
-            })
-            .catch(next);
+                .catch(next);
 
         }
     }
@@ -65,7 +65,7 @@ class todoController {
 
     }
     //delete item handler
-    DeleteItemById(req, res,next) {
+    DeleteItemById(req, res, next) {
         const { _id } = req.params;
 
         //  if(uid===uid){

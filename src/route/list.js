@@ -4,20 +4,20 @@ const router = express.Router();
 
 
 //render my list;
-router.get('/get',listController.GetAllMyList);
+router.get('/get', listController.GetAllMyList);
 //createnewlist
-router.get('/create',listController.CreateListPage);
-router.post('/create',listController.CreateList);
+router.get('/create', listController.CreateListPage);
+router.post('/create', listController.CreateList);
 //render editlist
-router.get('/edit',listController.EditListPage);
+router.get('/edit/:_id', listController.EditListPage);
 //edit list handler
-router.post('/edit',listController.EditList);
+router.post('/edit/:_id', listController.EditList);
 //delete list by id
-router.post('/delete/:_id',listController.DeleteListById);
+router.post('/delete/:_id', listController.DeleteListById);
 
-router.get('/delete/:_id',listController.GetAllMyList);
+router.get('/delete/:_id', listController.GetAllMyList);
 //share list to user
-router.post('/share',listController.ShareListToUser);
+router.post('/share', listController.ShareListToUser);
 //get all my list
 
 
